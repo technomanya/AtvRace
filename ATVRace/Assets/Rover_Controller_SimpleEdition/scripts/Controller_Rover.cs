@@ -38,6 +38,7 @@ public class Controller_Rover_system : System.Object
     public GameObject Left_Wheel_Mesh;
     [Tooltip("Right Wheel Mesh")]
     public GameObject Right_Wheel_Mesh;
+    public GameObject gidon;
 
 }
 
@@ -127,7 +128,7 @@ public class Controller_Rover : MonoBehaviour
         Wheel_proces.Left_Wheel_Collider.GetWorldPose(out Wheel_position, out Wheel_rotation);
         Wheel_proces.Left_Wheel_Mesh.transform.position = Wheel_position;
         Wheel_proces.Left_Wheel_Mesh.transform.rotation = Wheel_rotation;
-
+        Wheel_proces.gidon.transform.rotation = Quaternion.Euler(-90, Wheel_proces.Left_Wheel_Mesh.transform.rotation.y, 0);
        
 
 
