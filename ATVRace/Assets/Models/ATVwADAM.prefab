@@ -494,7 +494,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 370cb2e9c8bccfe48bdec70db08e4644, type: 3}
   wheelSmoke: {fileID: 100000, guid: 3c696ed2c46f7e4428d31d0bf5d0fd84, type: 3}
   chassis: {fileID: 1125410697238041868}
-  info: 1
+  info: 0
 --- !u!1 &2650934259533815965
 GameObject:
   m_ObjectHideFlags: 0
