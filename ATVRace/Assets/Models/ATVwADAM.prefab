@@ -271,7 +271,7 @@ MonoBehaviour:
   totalWaypointPassed: 0
   nextWaypointPassRadius: 30
   ignoreWaypointNow: 0
-  _wheelTypeChoise: 1
+  _wheelTypeChoise: 2
   engineTorqueCurve:
   - serializedVersion: 2
     m_Curve:

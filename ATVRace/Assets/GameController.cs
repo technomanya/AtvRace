@@ -12,7 +12,11 @@ public class GameController : MonoBehaviour
         AIinitialPos = GameObject.FindGameObjectsWithTag("AIinitialPos");
         foreach (var ai in AIinitialPos)
         {
+            float maxSpeed = Random.Range(200, 300);
+            float engineRand = Random.Range(3000, 4000);
             var aiObj = Instantiate(AtvPrefab, ai.transform.position, ai.transform.rotation);
+            aiObj.GetComponent<SAICSmartAICar>().engineTorque = engineRand;
+            aiObj.GetComponent<SAICSmartAICar>().maximumSpeed = maxSpeed;
         }
     }
 
