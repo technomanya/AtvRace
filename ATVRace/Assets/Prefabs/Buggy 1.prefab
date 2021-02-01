@@ -430,7 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636a038b0726ed14cbbc0c07cf453842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touch: 0
   Wheel_Settings:
   - ThisMotor: 1
     Reverse: 0
@@ -440,7 +439,7 @@ MonoBehaviour:
     Right_Wheel_Collider: {fileID: 6982975096604690379}
     Left_Wheel_Mesh: {fileID: 7126872423142767927}
     Right_Wheel_Mesh: {fileID: 7125329540579606491}
-    gidon: {fileID: 168884728995979997}
+    gidon: {fileID: 156887313729304039}
   - ThisMotor: 1
     Reverse: 0
     ThisSteering: 0
@@ -505,8 +504,6 @@ MonoBehaviour:
   CurrentSpeed_MPH: 0
   WheelRPM: 0
   RPM_counter_collider: {fileID: 6982289475759932927}
-  mouseX: 0
-  horizantal: 0
 --- !u!1 &7125860929767283737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,15 +1279,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5ba6ad3d44a33ee40a4ebc88d81fd979, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.015
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ba6ad3d44a33ee40a4ebc88d81fd979, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.586
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ba6ad3d44a33ee40a4ebc88d81fd979, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.811
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ba6ad3d44a33ee40a4ebc88d81fd979, type: 3}
       propertyPath: m_LocalRotation.x
