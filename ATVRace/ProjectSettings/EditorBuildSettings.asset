@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Rover_Controller_SimpleEdition/RoverContr.unity
+    guid: 73cf905406044a44ba46a8d0429502ea
   m_configObjects: {}
