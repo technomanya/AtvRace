@@ -7,7 +7,7 @@ using UnityEngine;
 public class Controller_Rover_system : System.Object
 {
 
-
+   
 
 
     [Header("------------WHEELS BASE SETUP------------")]
@@ -44,7 +44,8 @@ public class Controller_Rover_system : System.Object
 public class Controller_Rover : MonoBehaviour
 {
 
-
+    private Touch m_Touch;
+    public bool touch;
 
     [Header("WHEELS SETUP")]
     public List<Controller_Rover_system> Wheel_Settings;
@@ -110,7 +111,8 @@ public class Controller_Rover : MonoBehaviour
     private float SleepDelay = 3f;
     private float SleepDelay_current;
     private float TorqueCalc;
-
+    public float mouseX;
+    public float horizantal;
 
 
 
@@ -145,15 +147,22 @@ public class Controller_Rover : MonoBehaviour
 
     public void FixedUpdate()
     {
+        
 
-        CurrentSpeed = RoverRigidBody.velocity.magnitude;
+        if (Input.GetMouseButton(0))
+        {
+            mouseX = Mathf.Clamp((Input.mousePosition.x / Screen.width) * 2 - 1, -1.0F, 1.0F);
+
+             CurrentSpeed = RoverRigidBody.velocity.magnitude;
 
         if (CurrentSpeed < 0.09f & Mathf.Abs(Input.GetAxis("Vertical")) < 0.15f)
         {
+       
             SleepDelay_current += Time.fixedDeltaTime;
 
             if (SleepDelay_current > SleepDelay)
             {
+              
                 RoverRigidBody.Sleep();
                 WheelRPM = 0.0f;
                 CurrentSpeed_KPH = 0.0f;
@@ -182,7 +191,8 @@ public class Controller_Rover : MonoBehaviour
 
         if (CurrentSpeed_KPH < MaxSpeed)
         {
-            TorqueCalc = MaxPower * -1 * Input.GetAxis("Vertical") * Torque_Curve.Evaluate(Torque_Curve_Lerp);
+            TorqueCalc = MaxPower * -1  * Torque_Curve.Evaluate(Torque_Curve_Lerp);
+            
         }
 
         else
@@ -193,7 +203,8 @@ public class Controller_Rover : MonoBehaviour
 
 
         float motor = TorqueCalc;
-        float ThisSteering = Mathf.Lerp(MaxAngle, MaxAngle_InSpeed, Torque_Curve_Lerp) * Input.GetAxis("Horizontal");
+        
+        float ThisSteering = Mathf.Lerp(MaxAngle, MaxAngle_InSpeed, Torque_Curve_Lerp) * mouseX;
 
 
         RoverRigidBody.centerOfMass = CenterOfMass_offset;
@@ -217,6 +228,7 @@ public class Controller_Rover : MonoBehaviour
            
             if (Wheel_proces.ThisSteering == true)
             {
+              
                 if (Wheel_proces.SteeringRevers == false)
                 {
                     Wheel_proces.Left_Wheel_Collider.steerAngle = Wheel_proces.Right_Wheel_Collider.steerAngle = ((Wheel_proces.Reverse) ? -1 : 1) * ThisSteering;
@@ -231,24 +243,25 @@ public class Controller_Rover : MonoBehaviour
             if (Wheel_proces.ThisMotor == true)
             {
 
-                if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1f)
+                if (Mathf.Abs(Input.GetAxis("Mouse X")) < 0.1f)
                 {
                     Wheel_proces.Left_Wheel_Collider.motorTorque = motor;
                     Wheel_proces.Right_Wheel_Collider.motorTorque = motor;
+                    
                 }
 
                 else
                 {
-                    if (Input.GetAxis("Horizontal") > 0.15f)
+                    if (Input.GetAxis("Mouse X") > 0.15f)
                     {
 
-
+                        Debug.Log("sag");
                         Wheel_proces.Left_Wheel_Collider.motorTorque = motor;
                         Wheel_proces.Right_Wheel_Collider.motorTorque = motor * Differential_Power;
                     }
 
-                    if (Input.GetAxis("Horizontal") < -0.15f)
-                    {
+                    if (Input.GetAxis("Mouse X") < -0.15f)
+                    {Debug.Log("sol");
                         Wheel_proces.Left_Wheel_Collider.motorTorque = motor * Differential_Power;
                         Wheel_proces.Right_Wheel_Collider.motorTorque = motor;
                     }
@@ -267,6 +280,9 @@ public class Controller_Rover : MonoBehaviour
 
             Wheel_Render(Wheel_proces);
         }
+        }
+        
+       
 
 
 
